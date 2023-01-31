@@ -1,0 +1,30 @@
+void generateZombies(int &numX, int &numY, vector<vector<char>> &grid)
+{
+    cout << "==============================" << endl;
+    cout << "        Zombie Settings" << endl;
+    cout << "==============================" << endl;
+    cout << "Number of Zombies (1-9) => ";
+    cin >> zombies;
+
+    char objects[9] = {'1', '2', '3', '4', '5', '6', '7', '8', '9'};
+    if (zombies > 0 && zombies < 10)
+    {
+        int generatedZombies = 0;
+        while (generatedZombies < zombies)
+        {
+            int randomIndex = rand() % (numX * numY);
+            int x = randomIndex / numY;
+            int y = randomIndex % numY;
+            if (grid[x][y] != '1', '2', '3', '4', '5', '6', '7', '8', '9')
+            {
+                grid[x][y] = objects[generatedZombies];
+                generatedZombies = generatedZombies + 1;
+            }
+        }
+    }
+    else
+    {
+        cout << "Invalid!" << endl;
+        cout << "Please insert the number of zombies between the range 1-9" << endl;
+    }
+}
