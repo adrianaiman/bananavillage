@@ -1,0 +1,42 @@
+void moveCharacter(vector<vector<char>> &grid, int &currentX, int &currentY)
+{
+    string moveDirection;
+    cout << "COMMANDS=> ";
+    getline(cin, moveDirection);
+
+    if (moveDirection == "up")
+    {
+        if (currentX > 0)
+        {                                   // check if the character is not on the top edge
+            grid[currentX][currentY] = '.'; // clear current position
+            currentX--;                     // move up
+            grid[currentX][currentY] = 'A'; // update new position
+        }
+    }
+    else if (moveDirection == "down")
+    {
+        if (currentX < grid.size() - 1)
+        { // check if the character is not on the bottom edge
+            grid[currentX][currentY] = '.';
+            currentX++;
+            grid[currentX][currentY] = 'A';
+        }
+    }
+    else if (moveDirection == "left")
+    {
+        if (currentY > 0)
+        { // check if the character is not on the left edge
+            grid[currentX][currentY] = '.';
+            currentY--;
+            grid[currentX][currentY] = 'A';
+        }
+    }
+    else if (moveDirection == "right")
+    {
+        if (currentY < grid[0].size() - 1)
+        { // check if the character is not on the right edge
+            grid[currentX][currentY] = '.';
+            currentY++;
+            grid[currentX][currentY] = 'A';
+        }
+    }
