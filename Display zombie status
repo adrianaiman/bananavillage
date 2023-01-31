@@ -1,0 +1,28 @@
+void displayZombieStatus(int zombies)
+{
+    srand(time(0)); // to generate random number
+    int Z_health[zombies];
+    int Z_attack_damage[zombies];
+    int Z_attack_range[zombies];
+    for (int i = 0; i < zombies; i++)
+    {
+        Z_health[i] = 250;                      // random value between 50-200
+        Z_attack_damage[i] = (rand() % 20) + 5; // random value between 5-20
+        if (Z_attack_damage[i] % 5 != 0)
+        {
+            Z_attack_damage[i] -= Z_attack_damage[i] % 5;
+        }
+        Z_attack_range[i] = (rand() % 5) + 1; // random value between 1-5
+    }
+    for (int i = 0; i < zombies; i++)
+    {
+        cout << "Zombie Status"
+             << " " << i + 1 << ">>>";
+        cout << " ";
+        cout << "Health: " << Z_health[i];
+        cout << " ";
+        cout << "| Attack Damage: " << Z_attack_damage[i];
+        cout << " ";
+        cout << "| Attack Range: " << Z_attack_range[i] << endl;
+    }
+}
