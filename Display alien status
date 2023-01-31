@@ -1,0 +1,14 @@
+int A_health = 100;
+int A_attack_damage = 10;
+int A_attack_range = 1;
+
+void displayAlienStatus()
+{
+    cout << "Alien Status  >>>";
+    cout << " ";
+    cout << "Health: " << A_health;
+    cout << " ";
+    cout << "| Attack Damage: " << A_attack_damage;
+    cout << " ";
+    cout << "| Attack Range: " << A_attack_range << endl;
+}
