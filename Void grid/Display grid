@@ -1,0 +1,90 @@
+void generateBoard(int &numX, int &numY, vector<vector<char>> &grid)
+{
+    cout << endl;
+    cout << "==============================" << endl;
+    cout << "        Board Settings" << endl;
+    cout << "==============================" << endl;
+    cout << "Please enter odd numbers only" << endl;
+    cout << "Enter number of rows=>";
+    cin >> numX;
+
+    while (numX % 2 == 0)
+    {
+        cout << "Invalid! Please enter an odd number" << endl;
+        cout << "Enter number of rows=>";
+        cin >> numX;
+    }
+    cout << "Enter number of column=>";
+    cin >> numY;
+    while (numY % 2 == 0)
+    {
+        cout << "Invalid! Please enter an odd number" << endl;
+        cout << "Enter number of columns=>";
+        cin >> numY;
+    }
+    grid.resize(numX, vector<char>(numY));
+
+    // Place 'A' in the middle of the grid
+    int midX = (numX - 1) / 2;
+    int midY = (numY - 1) / 2;
+
+    grid[midX][midY] = 'A';
+}
+
+
+void displayBoard(int &numX, int &numY, vector<vector<char>> &grid)
+{
+    cout << "------------------------------" << endl;
+    cout << "|       Alien vs Zombie      |" << endl;
+    cout << "------------------------------" << endl;
+    for (int i = 0;
+         i < numX; i++)
+    {
+        // display upper border of the Row
+        cout << " ";
+        cout << " ";
+        for (int j = 0; j < numY; j++)
+        {
+            cout << "+-";
+        }
+        cout << "+" << endl;
+        // display row number
+        cout << setw(2) << i + 1;
+
+        for (int j = 0; j < numY; j++)
+        {
+            cout << "|" << grid[i][j];
+        }
+        cout << "|" << endl;
+    }
+
+    cout << " ";
+    cout << " ";
+    for (int j = 0; j < numY; j++)
+    {
+        cout << "+-";
+    }
+    cout << "+" << endl;
+
+    cout << " ";
+    cout << " ";
+    for (int j = 0; j < numY; ++j)
+    {
+        int digit = (j + 1) / 10;
+        cout << " ";
+        if (digit == 0)
+            cout << " ";
+        else
+            cout << digit;
+    }
+
+    cout << endl;
+    cout << " ";
+    cout << " ";
+    for (int j = 0; j < numY; ++j)
+    {
+        cout << " " << (j + 1) % 10;
+    }
+    cout << endl
+         << endl;
+}
