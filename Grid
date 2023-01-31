@@ -1,0 +1,110 @@
+#include <iostream>
+#include <string>
+#include <vector>
+#include <ctime> 
+#include <iomanip> 
+using namespace std;
+class Mars
+{
+private:
+    vector<vector<char>> map_; 
+    int dimX_, dimY_;          
+public:
+    Mars(int dimX = 15, int dimY = 5);
+    void init(int dimX, int dimY);
+    void display() const;
+};
+Mars::Mars(int dimX, int dimY)
+{
+    init(dimX, dimY);
+}
+void Mars::init(int dimX, int dimY)
+{
+    dimX_ = dimX;
+    dimY_ = dimY;
+    char objects[] = {' ', ' ', ' ', ' ', ' ', 'r', '^', '>', '<', 'v', 'p', 'h', '1', '2'};
+    int noOfObjects = 14; // number of objects in the objects array
+   
+    map_.resize(dimY_); // create empty rows
+    for (int i = 0; i < dimY_; ++i)
+    {
+        map_[i].resize(dimX_); // resize each row
+    }
+    // put random characters into the vector array
+    for (int i = 0; i < dimY_; ++i)
+    {
+        for (int j = 0; j < dimX_; ++j)
+        {
+            int objNo = rand() % noOfObjects;
+            map_[i][j] = objects[objNo];
+        }
+    }
+}
+void Mars::display() const
+{
+
+    cout << " --__--__--__--__--__--__--__--_" << endl;
+    cout << " = Alien vs Zombie ヽ( `д´*)ノ =" << endl;
+    cout << " __--__--__--__--__--__--__--__-" << endl;
+    
+    for (int i = 0; i < dimY_; ++i)
+    {
+        // display upper border of the row
+        cout << " ";
+        cout << " ";
+        for (int j = 0; j < dimX_; ++j)
+        {
+            cout << "+-";
+        }
+        cout << "+" << endl;
+        // display row number
+        cout << setw(2) << (dimY_ - i);
+        // display cell content and border of each column
+        for (int j = 0; j < dimX_; ++j)
+        {
+            cout << "|" << map_[i][j];
+        }
+        cout << "|" << endl;
+    }
+    // display lower border of the last row
+    cout << " ";
+    cout << " ";
+    for (int j = 0; j < dimX_; ++j)
+    {
+        cout << "+-";
+    }
+    cout << "+" << endl;
+    // display column number
+    cout << " ";
+    cout << " ";
+    for (int j = 0; j < dimX_; ++j)
+    {
+        int digit = (j + 1) / 10;
+        cout << " ";
+        if (digit == 0)
+            cout << " ";
+        else
+            cout << digit;
+    }
+    cout << endl;
+    cout << " ";
+    cout << " ";
+    for (int j = 0; j < dimX_; ++j)
+    {
+        cout << " " << (j + 1) % 10;
+    }
+    cout << endl
+         << endl;
+}
+
+void display()
+{
+    Mars mars;
+    mars.display();
+}
+int main()
+{
+
+    srand(time(NULL)); 
+    display();
+}
