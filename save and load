@@ -1,0 +1,89 @@
+else if (moveDirection == "save")
+    {
+        string player;
+        int level;
+        cout << "who is playing the game=>";
+        cin >> player;
+        string filename;
+        cout << "Enter the file name to save your game=>";
+        cin >> filename;
+        ofstream savefile(filename);
+        if (!savefile.is_open())
+        {
+            cerr << " Error Failed to save your game" << endl;
+            return;
+        }
+
+        // save player name
+        savefile << player << endl;
+
+        // save grid
+        for (int i = 0; i < numX; i++)
+        {
+            for (int j = 0; j < numY; j++)
+            {
+                savefile << grid[i][j] << " ";
+            }
+            savefile << endl;
+        }
+
+        // Add any other variables that you want to save
+        if (!savefile.good())
+        {
+            cerr << "Error: Failed to write to save file." << endl;
+            return;
+        }
+        // closefile
+        savefile.close();
+        cout << "Game saved successfully to " << filename << "!" << endl;
+    }
+
+    else if (moveDirection == "load")
+    {
+
+        string filename;
+        cout << "which file would you like to load=>";
+        cin >> filename;
+        ifstream loadfile(filename);
+
+        if (!loadfile.is_open())
+        {
+            cerr << "error: failed to load file" << endl;
+            return;
+        }
+
+        // read players file
+
+        string player;
+        loadfile >> player;
+        for (int i = 0; i < numX; i++)
+        {
+            for (int j = 0; j < numY; j++)
+            {
+                loadfile >> grid[i][j];
+            }
+        }
+        for (int i = 0; i < numX; i++)
+        {
+            for (int j = 0; j < numY; j++)
+            {
+                cout << grid[i][j] << " ";
+            }
+            cout << endl;
+        }
+        // Close the file
+        loadfile.close();
+        cout << "Game loaded successfully from " << filename << "!" << endl;
+    }
+    // else if (moveDirection == "quit")
+    // {
+    //     // Code to quit the game
+    // }
+    // else if (moveDirection == "arrow")
+    // {
+    //     // Code to change the direction of an arrow
+    // }
+    else
+    {
+        cout << "Please enter a valid command or type Help for command menue" << endl;
+    }
