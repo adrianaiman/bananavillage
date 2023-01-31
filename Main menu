@@ -1,0 +1,86 @@
+
+#include "case0.h"
+#include <iostream>
+#include <string>
+
+vector<vector<char>> grid;
+
+using namespace std;
+
+
+bool game_generated = false;
+
+void Menu()
+{
+
+    // main function
+    int decision;
+    do
+    {
+        cout << "=*=*=*=*=*=*=*=*=*=*=*=*" << endl;
+        cout << "   Alien vs Zombie      " << endl;
+        cout << "=*=*=*=*=*=*=*=*=*=*=*=*" << endl;
+        cout << " 0) New Game" << endl;
+        cout << " 1) Load Game  " << endl;
+        cout << " 2) customize Game Settings " << endl;
+        cout << " 3) Exit Game" << endl;
+        cout << "=*=*=*=*=*=*=*=*=*=*=*=*" << endl;
+        cout << "    BE PREPARED!!!      " << endl;
+        cout << "=*=*=*=*=*=*=*=*=*=*=*=*" << endl
+             << endl;
+        cout << " choose your fate =>";
+        cin >> decision;
+        switch (decision)
+        {
+
+        case 0:
+            cout << " Welcome to ALien Vs Zombie!!!\n";
+            generateBoard(numX, numY, grid);
+            if (numX % 2 == 1 && numY % 2 == 1)
+            {
+                generateInpluto(numX, numY, grid);
+                generateZombies(numX, numY, grid);
+                if (zombies > 0 && zombies < 10)
+                {
+                    displayBoard(numX, numY, grid);
+                }
+            game_generated = true;
+            break;
+            }
+
+        case 1:
+            cout << " Please wait for game to Load \n";
+            break;
+
+        case 2:
+            cout << " How would you like to play\n ";
+            break;
+
+        case 3:
+            cout << " Press 1 to confirm exit of the game \n";
+            break;
+        }
+        break;
+
+    } while (decision != 3);
+
+
+}
+
+
+int main()
+{
+    while(true)
+    {
+        Menu();
+        if(game_generated)
+        {
+            break;
+        }
+    }
+    return 0;
+
+    // cout << "Assignment (Part 1)" << endl;
+    // cout << "Let's Get Started!" << endl;
+  
+}
