@@ -1,0 +1,49 @@
+int main()
+{
+    int numX, numY;
+    vector<vector<char>> grid;
+    //welcome void
+    welcome();
+    cout << "                         ARE YOU READY? " << endl;
+    cout << "                press any key if you are ready" << endl;
+    _getch();
+    system("cls");
+
+    //board
+    generateBoard(numX, numY, grid);
+    if (numX % 2 == 1 && numY % 2 == 1)
+    {
+        generateInpluto(numX, numY, grid);
+    }
+    int currentX = (numX - 1) / 2;
+    int currentY = (numY - 1) / 2;
+    generateZombies(numX, numY, grid);
+
+    cout << " "<< endl;
+    cout << "Settings is updated" << endl;
+    cout << "Number of rows=>" << numX << endl;
+    cout << "Number of columns=>" << numY << endl;
+    cout << "Number of zombies=>" << zombies << endl;
+    cout <<" "<< endl;
+    cout << "Press any key to continue... " << endl;
+    _getch();
+    system("cls");
+    
+    while (true)
+    {
+        if (zombies > 0 && zombies < 10)
+        {
+            displayBoard(numX, numY, grid);
+        }
+        // displayBoard(numX, numY, grid);
+        // resetGrid(grid,currentX, currentY);
+
+        moveCharacter(grid, currentX, currentY);
+        cout << "Press any key to continue... " << endl;
+        _getch();
+
+        system("cls");
+    }
+
+    return 0;
+}
