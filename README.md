@@ -6,7 +6,7 @@ Alien vs zombie is a C++ grid-based game board about aliens fighting with zombie
 
 ![Alt text](https://drive.google.com/file/d/13PqJkJlbT4Gpr3UhFK02llhA9j1mWNYc/view?usp=share_link "title page")
 
-Please provide the YouTube link to your [Video Demo](https://youtube.com).
+Please provide the YouTube link to your [Video Demo](https://www.youtube.com/watch?v=64AH-ano6Q0).
 
 ## Compilation Instructions
 
