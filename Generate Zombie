@@ -1,8 +1,5 @@
 void generateZombies(int &numX, int &numY, vector<vector<char>> &grid)
 {
-    cout << "==============================" << endl;
-    cout << "        Zombie Settings" << endl;
-    cout << "==============================" << endl;
     cout << "Number of Zombies (1-9) => ";
     cin >> zombies;
 
@@ -29,5 +26,3 @@ void generateZombies(int &numX, int &numY, vector<vector<char>> &grid)
         cout << "Please insert the number of zombies between the range 1-9" << endl;
     }
 }
-
-
