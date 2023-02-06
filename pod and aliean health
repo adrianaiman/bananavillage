@@ -1,0 +1,524 @@
+// #ifndef CASE1_H
+// #define CASE1_H
+#include <iostream>
+#include <string>
+#include <vector>
+#include <iomanip>
+#include <conio.h> // for setw()
+#include <cstdlib>
+#include <fstream>
+using namespace std;
+
+int numX;
+int numY;
+int zombies;
+
+// struct Player
+// {
+//     string name;
+//     int level;
+// };
+
+void welcome()
+{
+    cout << "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$" << endl;
+    cout << "    $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$" << endl;
+    cout << "       $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$" << endl;
+    cout << "           $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$" << endl
+         << endl;
+    ;
+    cout << "         888     88      88    888888   888    88 " << endl;
+    cout << "         888     88      88    88       88 88  88 " << endl;
+    cout << "        88888    88      88    88888    88  88 88  " << endl;
+    cout << "       88   88   88      88    88       88   8888     " << endl;
+    cout << "      88     88  888888  88    888888   88    888  VS   " << endl;
+    cout << " " << endl;
+    cout << "       888888   8888   888   888  88888   88  888888    " << endl;
+    cout << "          88   88  88  88 8 8 88  88   8  88  88 " << endl;
+    cout << "         88    88  88  88  8  88  88888   88  88888   " << endl;
+    cout << "       88      88  88  88     88  88   8  88  88" << endl;
+    cout << "       888888   8888   88     88  88888   88  888888" << endl;
+    cout << " " << endl;
+    cout << "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$" << endl;
+    cout << "    $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$" << endl;
+    cout << "         $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$" << endl;
+    cout << "              $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$" << endl;
+    cout << " " << endl;
+}
+void generateBoard(int &numX, int &numY, vector<vector<char>> &grid)
+{
+    cout << endl;
+    cout << "==============================" << endl;
+    cout << "        Board Settings" << endl;
+    cout << "==============================" << endl;
+    cout << "Please enter odd numbers only" << endl;
+    cout << "Enter number of rows=>";
+    cin >> numX;
+
+    while (numX % 2 == 0)
+    {
+        cout << "Invalid! Please enter an odd number" << endl;
+        cout << "Enter number of rows=>";
+        cin >> numX;
+    }
+    cout << "Enter number of column=>";
+    cin >> numY;
+    while (numY % 2 == 0)
+    {
+        cout << "Invalid! Please enter an odd number" << endl;
+        cout << "Enter number of columns=>";
+        cin >> numY;
+    }
+    grid.resize(numX, vector<char>(numY));
+
+    // Place 'A' in the middle of the grid
+    int midX = (numX - 1) / 2;
+    int midY = (numY - 1) / 2;
+
+    grid[midX][midY] = 'A';
+}
+
+void generateInpluto(int &numX, int &numY, vector<vector<char>> &grid)
+{
+    char objects[] = {' ', ' ', ' ', ' ', ' ', ' ', ' ', '<', '^', '>', 'v', 'h', 'p', 'r', 'p'};
+    int noOfObjects = 15; // number of objects in the objects array
+
+    // put random characters into the vector array
+    for (int i = 0; i < numX; ++i)
+    {
+        for (int j = 0; j < numY; ++j)
+        {
+            if (grid[i][j] != 'A')
+            {
+                int objNo = rand() % noOfObjects;
+                grid[i][j] = objects[objNo];
+            }
+        }
+    }
+}
+
+void generateZombies(int &numX, int &numY, vector<vector<char>> &grid)
+{
+    cout << "==============================" << endl;
+    cout << "        Zombie Settings" << endl;
+    cout << "==============================" << endl;
+    cout << "Number of Zombies (1-9) => ";
+    cin >> zombies;
+
+    char objects[9] = {'1', '2', '3', '4', '5', '6', '7', '8', '9'};
+
+    if (zombies > 0 && zombies < 10)
+    {
+        int generatedZombies = 0;
+        while (generatedZombies < zombies)
+        {
+            int randomIndex = rand() % (numX * numY);
+            int x = randomIndex / numY;
+            int y = randomIndex % numY;
+            if (grid[x][y] != '1', '2', '3', '4', '5', '6', '7', '8', '9')
+            {
+                grid[x][y] = objects[generatedZombies];
+                generatedZombies = generatedZombies + 1;
+            }
+        }
+    }
+    else
+    {
+        cout << "Invalid!" << endl;
+        cout << "Please insert the number of zombies between the range 1-9" << endl;
+    }
+}
+
+void displayBoard(int &numX, int &numY, vector<vector<char>> &grid)
+{
+    cout << "------------------------------" << endl;
+    cout << "|       Alien vs Zombie      |" << endl;
+    cout << "------------------------------" << endl;
+    for (int i = 0;
+         i < numX; i++)
+    {
+        // display upper border of the Row
+        cout << " ";
+        cout << " ";
+        for (int j = 0; j < numY; j++)
+        {
+            cout << "+-";
+        }
+        cout << "+" << endl;
+        // display row number
+        cout << setw(2) << i + 1;
+
+        for (int j = 0; j < numY; j++)
+        {
+            cout << "|" << grid[i][j];
+        }
+        cout << "|" << endl;
+    }
+
+    cout << " ";
+    cout << " ";
+    for (int j = 0; j < numY; j++)
+    {
+        cout << "+-";
+    }
+    cout << "+" << endl;
+
+    cout << " ";
+    cout << " ";
+    for (int j = 0; j < numY; ++j)
+    {
+        int digit = (j + 1) / 10;
+        cout << " ";
+        if (digit == 0)
+            cout << " ";
+        else
+            cout << digit;
+    }
+
+    cout << endl;
+    cout << " ";
+    cout << " ";
+    for (int j = 0; j < numY; ++j)
+    {
+        cout << " " << (j + 1) % 10;
+    }
+    cout << endl
+         << endl;
+}
+
+void displayAlienStatus(int &A_health, int A_attack_damage, int A_attack_range)
+{
+
+    cout << "Alien Status  >>>";
+    cout << " ";
+    cout << "Health: " << A_health;
+
+    cout << " ";
+    cout << "| Attack Damage: " << A_attack_damage;
+    cout << " ";
+    cout << "| Attack Range: " << A_attack_range << endl;
+}
+
+void displayZombieStatus(int zombies)
+{
+    srand(time(0)); // to generate random number
+    int Z_health[zombies];
+    int Z_attack_damage[zombies];
+    int Z_attack_range[zombies];
+    for (int i = 0; i < zombies; i++)
+    {
+        Z_health[i] = 250;                      // random value between 50-200
+        Z_attack_damage[i] = (rand() % 20) + 5; // random value between 5-20
+        if (Z_attack_damage[i] % 5 != 0)
+        {
+            Z_attack_damage[i] -= Z_attack_damage[i] % 5;
+        }
+        Z_attack_range[i] = (rand() % 5) + 1; // random value between 1-5
+    }
+    for (int i = 0; i < zombies; i++)
+    {
+        cout << "Zombie Status"
+             << " " << i + 1 << ">>>";
+        cout << " ";
+        cout << "Health: " << Z_health[i];
+        cout << " ";
+        cout << "| Attack Damage: " << Z_attack_damage[i];
+        cout << " ";
+        cout << "| Attack Range: " << Z_attack_range[i] << endl;
+    }
+}
+
+void saveGame(const vector<vector<char>> &grid, const int currentX, const int currentY, const int A_health, const string &player)
+{
+    string filename;
+    cout << "Enter the file name to save your game: ";
+    cin >> filename;
+
+    ofstream savefile(filename);
+    if (!savefile.is_open())
+    {
+        cerr << "Error: Failed to save your game" << endl;
+        return;
+    }
+
+    // Save player name
+    savefile << player << endl;
+
+    // Save grid size
+    savefile << grid.size() << " " << grid[0].size() << endl;
+
+    // Save grid
+    for (const auto &row : grid)
+    {
+        for (const auto &col : row)
+        {
+            savefile << col << " ";
+        }
+        savefile << endl;
+    }
+
+    // Save current position
+    savefile << currentX << " " << currentY << endl;
+
+    // Save health
+    savefile << A_health << endl;
+
+    cout << "Your game was saved successfully!" << endl;
+    savefile.close();
+}
+
+void loadGame(vector<vector<char>> &grid, int &currentX, int &currentY, int &A_health, const string &player)
+{
+    string filename;
+    cout << "Enter the file name to load your game: ";
+    cin >> filename;
+
+    ifstream loadfile(filename);
+    if (!loadfile.is_open())
+    {
+        cerr << "Error: Failed to load your game" << endl;
+        return;
+    }
+
+    // Load player name
+    // getline(loadfile, player);
+
+    // Load grid size
+    int numX, numY;
+    loadfile >> numX >> numY;
+    grid.resize(numX);
+    for (auto &row : grid)
+    {
+        row.resize(numY);
+    }
+
+    // Load grid
+    char temp;
+    for (int i = 0; i < numX; i++)
+    {
+        for (int j = 0; j < numY; j++)
+        {
+            loadfile >> temp;
+            grid[i][j] = temp;
+        }
+    }
+
+    // Load current position
+    loadfile >> currentX >> currentY;
+
+    // Load health
+    loadfile >> A_health;
+
+    cout << "Your game was loaded successfully!" << endl;
+    loadfile.close();
+}
+
+void moveCharacter(vector<vector<char>> &grid, int &currentX, int &currentY, int &A_health, int &Z_health, const string &player)
+{
+    string moveDirection;
+    cout << "COMMANDS=> ";
+    getline(cin, moveDirection);
+
+    if (moveDirection == "up")
+    {
+        if (currentX > 0)
+        {                                   // check if the character is not on the top edge
+            grid[currentX][currentY] = '.'; // clear current position
+            currentX--;                     // move up
+            if (grid[currentX][currentY] == 'h')
+            {
+                cout << "Alien finds a health pack." << endl;
+                cout << "Alien's health increased by 5" << endl;
+                A_health += 5;
+            }
+            if (grid[currentX][currentY] == 'r')
+            {
+                cout << "Alien finds a rock." << endl;
+            }
+            grid[currentX][currentY] = 'A'; // update new position
+            if (grid[currentX][currentY] == 'p')
+            {
+                cout << "Alien finds pod ";
+                cout << "zombie recieves a damage of 10";
+                Z_health -= 10;
+            }
+        }
+    }
+    else if (moveDirection == "down")
+    {
+        if (currentX < grid.size() - 1)
+        { // check if the character is not on the bottom edge
+            grid[currentX][currentY] = '.';
+            currentX++;
+            if (grid[currentX][currentY] == 'h')
+            {
+                cout << "Alien finds a health pack." << endl;
+                cout << "Alien's health increased by 5" << endl;
+                A_health += 5;
+            }
+            if (grid[currentX][currentY] == 'r')
+            {
+                cout << "Alien finds a rock." << endl;
+            }
+            grid[currentX][currentY] = 'A';
+
+            if (grid[currentX][currentY] == 'p')
+            {
+                cout << "Alien finds pod ";
+                cout << "zombie recieves a damage of 10";
+                Z_health -= 10;
+            }
+        }
+    }
+    else if (moveDirection == "left")
+    {
+        if (currentY > 0)
+        { // check if the character is not on the left edge
+            grid[currentX][currentY] = '.';
+            currentY--;
+            if (grid[currentX][currentY] == 'h')
+            {
+                cout << "Alien finds a health pack." << endl;
+                cout << "Alien's health increased by 5" << endl;
+                A_health += 5;
+            }
+            if (grid[currentX][currentY] == 'r')
+            {
+                cout << "Alien finds a rock." << endl;
+            }
+            grid[currentX][currentY] = 'A';
+            if (grid[currentX][currentY] == 'p')
+            {
+                cout << "Alien finds pod ";
+                cout << "zombie recieves a damage of 10";
+                Z_health -= 10;
+            }
+        }
+    }
+    else if (moveDirection == "right")
+    {
+        if (currentY < grid[0].size() - 1)
+        { // check if the character is not on the right edge
+            grid[currentX][currentY] = '.';
+            currentY++;
+            if (grid[currentX][currentY] == 'h')
+            {
+                cout << "Alien finds a health pack." << endl;
+                cout << "Alien's health increased by 5" << endl;
+                A_health += 5;
+            }
+            if (grid[currentX][currentY] == 'r')
+            {
+                cout << "Alien finds a rock." << endl;
+            }
+            grid[currentX][currentY] = 'A'; 
+
+            if (grid[currentX][currentY]=='p')
+            {
+                cout<<"Alien finds pod ";
+                cout<<"zombie recieves a damage of 10";
+                Z_health-=10;
+
+            }
+        }
+    }
+    else if (moveDirection == "help")
+    {
+        cout << " commands" << endl;
+        cout << "1. up        -move up" << endl;
+        cout << "2. down      -move down" << endl;
+        cout << "3. left      -move left" << endl;
+        cout << "4. right     -move right" << endl;
+        cout << "6  arrow     -change the direction of an arrow" << endl;
+        cout << "7. help      -display user commands" << endl;
+        cout << "8. save      -save the game" << endl;
+        cout << "9. load      -load a game" << endl;
+        cout << "10 quit      -quit game" << endl;
+    }
+    else if (moveDirection == "save")
+    {
+        saveGame(grid, currentX, currentY, A_health, player);
+    }
+
+    else if (moveDirection == "load")
+    {
+        loadGame(grid, currentX, currentY, A_health, player);
+    }
+
+    else
+    {
+        cout << "Please enter a valid command or type Help for command menue" << endl;
+    }
+}
+
+void resetGrid(vector<vector<char>> &grid, int &currentX, int &currentY)
+{
+    for (int i = 0; i < grid.size(); i++)
+    {
+        for (int j = 0; j < grid[i].size(); j++)
+        {
+            if (grid[i][j] == '.' && (i != currentX || j != currentY))
+                grid[i][j] = ' ';
+        }
+    }
+}
+
+int main()
+{
+    int numX, numY;
+    int A_health = 100;
+    int Z_health = 250;
+    int A_attack_damage = 10;
+    int A_attack_range = 1;
+    string player;
+    vector<vector<char>> grid;
+    // welcome void
+    welcome();
+    cout << "                         ARE YOU READY? " << endl;
+    cout << "                press any key if you are ready" << endl;
+    _getch();
+    system("cls");
+
+    // board
+    generateBoard(numX, numY, grid);
+    if (numX % 2 == 1 && numY % 2 == 1)
+    {
+        generateInpluto(numX, numY, grid);
+    }
+    int currentX = (numX - 1) / 2;
+    int currentY = (numY - 1) / 2;
+    generateZombies(numX, numY, grid);
+
+    cout << " " << endl;
+    cout << "Settings is updated" << endl;
+    cout << "Number of rows=>" << numX << endl;
+    cout << "Number of columns=>" << numY << endl;
+    cout << "Number of zombies=>" << zombies << endl;
+    cout << " " << endl;
+    cout << "Press any key to continue... " << endl;
+    _getch();
+    system("cls");
+
+    while (true)
+    {
+        if (zombies > 0 && zombies < 10)
+        {
+            displayBoard(numX, numY, grid);
+
+            displayAlienStatus(A_health, A_attack_damage, A_attack_range);
+            displayZombieStatus(zombies);
+        }
+        // displayBoard(numX, numY, grid);
+        // resetGrid(grid,currentX, currentY);
+
+        moveCharacter(grid, currentX, currentY, A_health, player, Z_health);
+        cout << "press any key to continue... " << endl;
+        _getch();
+
+        system("cls");
+    }
+
+    return 0;
+}
+
+// #endif
