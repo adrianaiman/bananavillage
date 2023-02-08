@@ -1,0 +1,20 @@
+void gameOver(int A_health, int Z_health)
+{
+    if (A_health <= 0)
+    {
+        cout << "The Alien has died, game over!" << endl;
+
+        cout << " press again to exit the game " << endl;
+
+        getch();
+        exit(0);
+    }
+    else if (Z_health <= 0)
+    {
+        cout << "All zombies have been defeated, you win!" << endl;
+
+        cout << " press again to exit the game " << endl;
+        getch();
+        exit(0);
+    }
+}
