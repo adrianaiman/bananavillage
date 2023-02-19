@@ -64,9 +64,11 @@ For example:
 
 1. add beginner level in generatevoid
 2. Void updateboard (change arrow)
-3. Void resetgrid
-4. Function of arrow and command arrow
-5. Updates void moveCharacter so that when alien hits arrow, it moves according to direction
+3. Void resetgrid. 
+4. Reset the dot in the trail to random objects.
+5. Function of arrow and command arrow
+6. Updates void moveCharacter so that when alien hits arrow, it moves according to direction
+7. add function to clear screen and getch().
 
 
 ## Problems Encountered & Solutions
@@ -95,6 +97,10 @@ Problems faced :
 
 10. alien cannot detect what number of zombies they are attacking but both healths are affected
 
+11. When reset the dot in the trail it change to the same type of objects.
+
+12. 
+
 Solution : 
 
 1. Adding a conditional statement where both alien and zombie’s health have to be more than 0 and number of zombie input on the grid has to be in the range of 1-9. 
@@ -116,3 +122,6 @@ Solution :
 9. -
 
 10. - 
+
+11. 
+12. 
