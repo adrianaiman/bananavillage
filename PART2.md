@@ -32,6 +32,7 @@ List all the features not yet done. Remove this section if there is no incomplet
 1. Zombie removed from board if it is defeated
 2. When alien finds pod, it attacks the closest zombie
 3. Defeated zombies are skipped
+4. Load game to continue playing
 
 ## Additional Features
 
