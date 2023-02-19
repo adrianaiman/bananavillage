@@ -1,0 +1,43 @@
+//alien meets pod  
+ if (grid[currentX][currentY] == 'p')
+            {
+                cout << "Alien finds pod ";
+                cout << "zombie recieves a damage of 10 ";
+                Z_health -= 10;
+            }
+
+//alien meets health pack
+
+ if (grid[currentX][currentY] == 'h')
+            {
+                cout << "Alien finds a health pack." << endl;
+                cout << "Alien's health increased by 20" << endl;
+                A_health += 20;
+            }
+
+
+//alien meets rock 
+
+ if (grid[currentX][currentY] == 'r')
+            {
+                cout << "Alien finds a rock." << endl;
+                cout << "Press any key to continue..." << endl;
+                getch();
+                // generate a random number between 0 and 1
+                int random = rand() % 2;
+                if (random == 0)
+                {
+                    grid[currentX][currentY] = 'p';
+
+                    cout << "A pod appears on the rock." << endl;
+
+                    Z_health -= 10;
+                }
+                else
+                {
+                    grid[currentX][currentY] = 'h';
+
+                    cout << "A health-pack appears on the rock." << endl;
+
+                    A_health += 20;
+                }
