@@ -1,0 +1,28 @@
+void loadGame(vector<vector<char>> &grid, int &currentX, int &currentY, int &A_health, const string &player, const string &filename)
+{
+    string fileName, line;
+    cout<< "Type in saved file name =>" ;
+    cin >> fileName;
+
+    system("CLS");
+    ifstream file;
+    file.open(fileName);
+
+
+    if (file.is_open())
+    {
+       while (getline(file,line))
+       {
+        cout<<line<< endl;
+       }
+       file.close();
+       system ("PAUSE");
+    }
+    else
+    {
+        cout << "File name doen not exist" <<endl;
+        system ("PAUSE");
+    }
+    system ("PAUSE");
+
+}
