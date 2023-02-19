@@ -1,0 +1,32 @@
+if (grid[currentX][currentY] == '>')
+            {
+                cout << "Alien encounters an arrow pointing to the right" << endl;
+
+                getch();
+                A_attack_range += 1;
+                currentY++;
+            }
+            else if (grid[currentX][currentY] == '^')
+            {
+                cout << "Alien encounters an arrow pointing upwards" << endl;
+
+                getch();
+                A_attack_range += 1;
+                currentX--;
+            }
+            else if (grid[currentX][currentY] == '<')
+            {
+                cout << "Alien encounters an arrow pointing to the left" << endl;
+
+                getch();
+                A_attack_range += 1;
+                currentY--;
+            }
+            else if (grid[currentX][currentY] == 'v')
+            {
+                cout << "Alien encounters an arrow pointing downwards" << endl;
+
+                getch();
+                A_attack_range += 1;
+                currentX++;
+            }
