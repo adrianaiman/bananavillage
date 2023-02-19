@@ -12,6 +12,9 @@ else if (moveDirection == "quit")
         }
         else if (ans == "no")
         {
+            cout << "Press any key to continue... " << endl;
+            _getch();
+            system("cls");
             return;
         }
         else
