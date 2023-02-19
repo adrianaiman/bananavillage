@@ -28,7 +28,10 @@ Please provide the user manual on how to use your program.
 7. fill in your desired number of zombies
 8. board will be fully loaded
 9. enter help to see the settings of the game
-10. play the game accordingly and enjoy!
+10. the zombies move quite aggressively and sometimes the alien will disappear but do press any buttons so that the alien emerge again
+11. to save a game, type in the name of file that you want twice 
+12. to load a game, do type in your saved name with .txt at the back
+13. play the game accordingly and enjoy!
 
 
 ## Progress Log
