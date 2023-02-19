@@ -153,3 +153,12 @@ void moveCharacter(vector<vector<char>> &grid, int &currentX, int &currentY, int
             }
             
     }
+
+
+//
+else if (moveDirection == "arrow")
+    {
+        updateBoard(grid, currentX, currentY);
+    }
+    
+    //
