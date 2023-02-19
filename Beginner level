@@ -1,0 +1,91 @@
+void generateBoard(int &numX, int &numY, vector<vector<char>> &grid)
+{
+    int defaultNumX = 7;
+    int defaultNumY = 7;
+    cout << endl;
+
+    cout << "      ####################################" << endl;
+    cout << "   ##########################################" << endl;
+    cout << " ############### Board Settings ###############" << endl;
+    cout << "   ##########################################" << endl;
+    cout << "      ####################################" << endl
+         << endl;
+    cout << "                Choose a level:" << endl;
+    cout << "                 1. Beginner" << endl;
+    cout << "             2. Default Settings" << endl;
+    cout << "         3. Customize (choose board size)" << endl
+         << endl;
+    cout << "             Enter choice (1/2/3) =>" << endl;
+    int choice;
+    cin >> choice;
+    cout << "press any key to continue... " << endl;
+    _getch();
+    system("cls");
+    if (choice == 1)
+    {
+        // Beginner level
+        numX = 5;
+        numY = 5;
+        grid.resize(numX, vector<char>(numY, '-'));
+
+        // Print tutorial
+        cout << endl;
+        cout << "=======================================================================" << endl;
+        cout << "                              TUTORIAL" << endl;
+        cout << "=======================================================================" << endl;
+        cout << "=> The objective of the game is to survive as long as possible." << endl;
+        cout << "=> You (represented by 'A') start in the middle of the board." << endl;
+        cout << "=> Zombies (represented by '1-9') will move towards you every turn." << endl;
+        cout << "=> If a zombie gets next to you, it will attack and decrease your health." << endl;
+        cout << "=> You can attack zombies by moving next to them and enter the direction." << endl;
+        cout << "=> Attacking a zombie will decrease its health." << endl;
+        cout << "=> If a zombie's health reaches 0, it will die and disappear." << endl;
+        cout << "=> If your health reaches 0, you will die and the game will end." << endl;
+        cout << "=> Good luck!" << endl;
+        cout << "========================================================================" << endl
+             << endl;
+
+        cout << "press any key to continue... " << endl;
+        _getch();
+        system("cls");
+    }
+    else if (choice == 2)
+    {
+        // Default level
+        numX = defaultNumX;
+        numY = defaultNumY;
+        grid.resize(numX, vector<char>(numY, '-'));
+    }
+    else
+    {
+        // Custom level
+        cout << "Enter board size:" << endl;
+        cout << "Number of rows => ";
+        cin >> numX;
+
+        while (numX % 2 == 0)
+        {
+            cout << "Invalid! Please enter an odd number" << endl;
+            cout << "Enter number of rows => ";
+            cin >> numX;
+        }
+
+        cout << "Number of columns => ";
+        cin >> numY;
+
+        while (numY % 2 == 0)
+        {
+            cout << "Invalid! Please enter an odd number" << endl;
+            cout << "Enter number of columns => ";
+            cin >> numY;
+        }
+
+        grid.resize(numX, vector<char>(numY, '-'));
+    }
+
+    // Place 'A' in the middle of the grid
+    int midX = (numX - 1) / 2;
+    int midY = (numY - 1) / 2;
+
+    grid[midX][midY] = 'A';
+}
