@@ -1,0 +1,91 @@
+else if (Z_health <= 0)
+    {
+        cout << "All zombies have been defeated, you win!" << endl;
+        cout << "Do you want to play again? y for yes and n for no (y/n)=> " << endl;
+        char playAgain;
+        cin >> playAgain;
+
+        if (playAgain == 'y' || 'Y')
+        {
+            cout << "press any key to continue... " << endl;
+            _getch();
+            system("cls");
+            srand(time(NULL));
+            int numX, numY;
+            int Z_health = 50;
+            int Z_attack_range = (rand() % 5) + 1;         // random value between 1-5
+            const int Z_attack_damage = (rand() % 10) + 5; // random value between 5-15
+
+            int A_health = rand() % 101 + 100;
+            ;
+            int A_attack_damage = 10;
+            int A_attack_range = 1;
+            int currentX;
+            int currentY;
+            std::string player;
+            vector<vector<char>> grid;
+
+            int choice;
+            bool end = false;
+
+            while (!end)
+            {
+                bool gameEnd = false;
+
+                while (!gameEnd)
+                {
+                    cout << "Please select an option:" << endl;
+                    cout << "1. New game" << endl;
+                    cout << "2. Load game" << endl;
+                    cin >> choice;
+
+                    if (choice == 2)
+                    {
+                        loadGame(grid, currentX, currentY, A_health, player, "saved_game.txt");
+                        cout << "Game is loading..." << endl;
+                    }
+                    else if (choice == 1)
+                    {
+
+                        cout << "Board is generating..." << endl;
+                        _getch();
+                        system("cls");
+                        generateBoard(numX, numY, grid);
+
+                        if (numX % 2 == 1 && numY % 2 == 1)
+                        {
+                            generateInpluto(numX, numY, grid);
+                        }
+
+                        currentX = (numX - 1) / 2;
+                        currentY = (numY - 1) / 2;
+                        generateZombies(numX, numY, grid, zombieCoordinates);
+
+                        cout << " " << endl;
+                        cout << "Settings is updated" << endl;
+                        cout << "Number of rows=>" << numX << endl;
+                        cout << "Number of columns=>" << numY << endl;
+                        cout << "Number of zombies=>" << zombies << endl;
+                        cout << " " << endl;
+                        cout << "Press any key to continue... " << endl;
+                        _getch();
+                        system("cls");
+
+                        while (zombies > 0 && zombies < 10 && A_health > 0 && Z_health > 0)
+                        {
+                            displayBoard(numX, numY, grid);
+                            displayAlienStatus(A_health, A_attack_damage, A_attack_range);
+                            displayZombieStatus(zombies, Z_health, Z_attack_damage, Z_attack_range);
+                            moveCharacter(grid, currentX, currentY, A_health, Z_health, Z_attack_damage, A_attack_damage, player, zombieCoordinates, A_attack_range);
+                            moveZombies(numX, numY, grid, zombieCoordinates, Z_attack_range, A_health, Z_attack_damage, currentX, currentY);
+                            cout << "Press any key to continue... " << endl;
+                            _getch();
+                            system("cls");
+                        }
+
+                        end = true;
+                        break;
+                    }
+                }
+                break;
+            }
