@@ -1,0 +1,155 @@
+void moveCharacter(vector<vector<char>> &grid, int &currentX, int &currentY, int &A_health, int &Z_health, const int &Z_attack_damage, int &A_attack_damage, const string &player, vector<pair<int, int>> &zombieCoordinates)
+{
+    string moveDirection;
+    cout << "COMMANDS=> ";
+    getline(cin, moveDirection);
+
+    if (moveDirection == "w" || moveDirection == "W" || moveDirection == "^")
+    {
+        if (currentX > 0)
+        {
+            grid[currentX][currentY] = '.';
+            currentX--;
+            //
+            if (grid[currentX][currentY] == '>')
+            {
+                cout << "Alien encounters an arrow pointing to the right" << endl;
+                cout << "Press any key to continue..." << endl;
+                getch();
+                currentY++;
+            }
+            else if (grid[currentX][currentY] == '^')
+            {
+                cout << "Alien encounters an arrow pointing upwards" << endl;
+                cout << "Press any key to continue..." << endl;
+                getch();
+                currentX--;
+            }
+            else if (grid[currentX][currentY] == '<')
+            {
+                cout << "Alien encounters an arrow pointing to the left" << endl;
+                cout << "Press any key to continue..." << endl;
+                getch();
+                currentY--;
+            }
+            else if (grid[currentX][currentY] == 'v')
+            {
+                cout << "Alien encounters an arrow pointing downwards" << endl;
+                cout << "Press any key to continue..." << endl;
+                getch();
+                currentX++;
+            }
+            ///
+    }
+
+    else if (moveDirection == "s" || moveDirection == "S")
+    {
+    ////
+        if (currentX < grid.size() - 1)
+        { 
+            grid[currentX][currentY] = '.';
+            currentX++;
+
+            if (grid[currentX][currentY] == '>')
+            {
+                cout << "Alien encounters an arrow pointing to the right" << endl;
+                cout << "Press any key to continue..." << endl;
+                getch();
+                currentY++;
+            }
+            else if (grid[currentX][currentY] == '^')
+            {
+                cout << "Alien encounters an arrow pointing upwards" << endl;
+                cout << "Press any key to continue..." << endl;
+                getch();
+                currentX--;
+            }
+            else if (grid[currentX][currentY] == '<')
+            {
+                cout << "Alien encounters an arrow pointing to the left" << endl;
+                cout << "Press any key to continue..." << endl;
+                getch();
+                currentY--;
+            }
+            else if (grid[currentX][currentY] == 'v')
+            {
+                cout << "Alien encounters an arrow pointing downwards" << endl;
+                cout << "Press any key to continue..." << endl;
+                getch();
+                currentX++;
+            }
+    }
+    else if (moveDirection == "a" || moveDirection == "A")
+    {
+        if (currentY > 0)
+        { 
+            grid[currentX][currentY] = '.';
+            currentY--;
+           ////
+            if (grid[currentX][currentY] == '>')
+            {
+                cout << "Alien encounters an arrow pointing to the right" << endl;
+                cout << "Press any key to continue..." << endl;
+                getch();
+                currentY++;
+            }
+            else if (grid[currentX][currentY] == '^')
+            {
+                cout << "Alien encounters an arrow pointing upwards" << endl;
+                cout << "Press any key to continue..." << endl;
+                getch();
+                currentX--;
+            }
+            else if (grid[currentX][currentY] == '<')
+            {
+                cout << "Alien encounters an arrow pointing to the left" << endl;
+                cout << "Press any key to continue..." << endl;
+                getch();
+                currentY--;
+            }
+            else if (grid[currentX][currentY] == 'v')
+            {
+                cout << "Alien encounters an arrow pointing downwards" << endl;
+                cout << "Press any key to continue..." << endl;
+                getch();
+                currentX++;
+            }
+    }
+    else if (moveDirection == "d" || moveDirection == "D")
+    {
+        if (currentY < grid[0].size() - 1)
+        { 
+     
+            grid[currentX][currentY] = '.';
+            currentY++;
+            ////
+            if (grid[currentX][currentY] == '>')
+            {
+                cout << "Alien encounters an arrow pointing to the right" << endl;
+                cout << "Press any key to continue..." << endl;
+                getch();
+                currentY++;
+            }
+            else if (grid[currentX][currentY] == '^')
+            {
+                cout << "Alien encounters an arrow pointing upwards" << endl;
+                cout << "Press any key to continue..." << endl;
+                getch();
+                currentX--;
+            }
+            else if (grid[currentX][currentY] == '<')
+            {
+                cout << "Alien encounters an arrow pointing to the left" << endl;
+                cout << "Press any key to continue..." << endl;
+                getch();
+                currentY--;
+            }
+            else if (grid[currentX][currentY] == 'v')
+            {
+                cout << "Alien encounters an arrow pointing downwards" << endl;
+                cout << "Press any key to continue..." << endl;
+                getch();
+                currentX++;
+            }
+            
+    }
