@@ -361,58 +361,31 @@ void saveGame(const vector<vector<char>> &grid, const int currentX, const int cu
 
 void loadGame(vector<vector<char>> &grid, int &currentX, int &currentY, int &A_health, const string &player, const string &filename)
 {
-    std::ifstream loadfile(filename);
-    if (!loadfile.is_open())
+    string fileName, line;
+    cout<< "Type in saved file name =>" ;
+    cin >> fileName;
+
+    system("CLS");
+    ifstream file;
+    file.open(fileName);
+
+
+    if (file.is_open())
     {
-        cerr << "Error: Failed to load your game" << endl;
-        return;
+       while (getline(file,line))
+       {
+        cout<<line<< endl;
+       }
+       file.close();
+       system ("PAUSE");
     }
-    std::string loadedPlayer;
-
-    // Load player name
-    getline(loadfile, loadedPlayer);
-
-    // Load grid size
-    int numX, numY;
-    loadfile >> numX >> numY;
-    grid.resize(numX);
-    for (auto &row : grid)
+    else
     {
-        row.resize(numY);
+        cout << "File name doen not exist" <<endl;
+        system ("PAUSE");
     }
+    system ("PAUSE");
 
-    // Load grid
-    char temp;
-    for (int i = 0; i < numX; i++)
-    {
-        for (int j = 0; j < numY; j++)
-        {
-            loadfile >> temp;
-            grid[i][j] = temp;
-        }
-    }
-
-    // Load current position
-    loadfile >> currentX >> currentY;
-
-    // Load health
-    loadfile >> A_health;
-
-    // Display loaded game data
-    cout << "Player: " << loadedPlayer << endl;
-    cout << "Board:" << endl;
-    for (const auto &row : grid)
-    {
-        for (const auto &col : row)
-        {
-            cout << col << " ";
-        }
-        cout << endl;
-    }
-    cout << "Current position: " << currentX << ", " << currentY << endl;
-    cout << "Health: " << A_health << endl;
-
-    loadfile.close();
 }
 
 void updateBoard(vector<vector<char>> &grid, int &currentX, int &currentY)
