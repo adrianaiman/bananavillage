@@ -1,0 +1,27 @@
+for (int i = 0; i < 10; i++)
+            {
+                if (isdigit(grid[currentX][currentY])) // Check if the current grid location contains a digit
+                {
+                    // Attack the zombie
+                    cout << "Alien finds a zombie." << endl;
+                    if (Z_health > 0) // Check if Zombie is still alive
+                    {
+                        cout << "Zombie receives " << A_attack_damage << " damage." << endl;
+                        Z_health -= A_attack_damage; // Reduce Zombie's health
+                        if (Z_health > 0)
+                        {
+                            cout << "Zombie is still alive." << endl;
+                        }
+                        else
+                        {
+                            cout << "Zombie is dead." << endl;
+                            grid[currentX][currentY] = ' '; // Set the Zombie's location in the grid to ' ' to indicate that it's dead
+                        }
+                        break; // Exit the loop after attacking the Zombie
+                    }
+
+                    cout << "Alien's turn is over." << endl;
+
+                    cout << "Zombie's turn to attack. Trail is reset." << endl;
+                    resetGrid(grid, currentX, currentY);
+                }
