@@ -1,0 +1,77 @@
+void moveZombies(int numX, int numY, vector<vector<char>> &grid, vector<pair<int, int>> &zombieCoordinates, int Z_attack_range, int &A_health, int Z_attack_damage, int currentX, int currentY)
+{
+    char objects[9] = {'1', '2', '3', '4', '5', '6', '7', '8', '9'};
+    int newX, newY;
+    bool alien_attacked = false;
+
+    for (int i = 0; i < zombies; i++)
+    {
+        int x = zombieCoordinates[i].first;
+        int y = zombieCoordinates[i].second;
+        int moveDirection = rand() % 4;
+
+        switch (moveDirection)
+        {
+        case 0: // move up
+            newX = x - 1;
+            newY = y;
+            break;
+        case 1: // move right
+            newX = x;
+            newY = y + 1;
+            break;
+        case 2: // move down
+            newX = x + 1;
+            newY = y;
+            break;
+        case 3: // move left
+            newX = x;
+            newY = y - 1;
+            break;
+        }
+
+        // Check if the intended move is within the grid boundaries
+        if (newX >= 0 && newX < numX && newY >= 0 && newY < numY)
+        {
+            grid[newX][newY] = objects[i];
+            zombieCoordinates[i] = make_pair(newX, newY);
+            grid[x][y] = ' ';
+        }
+        else
+        {
+            // If the intended move is outside the grid boundaries, skip the zombie's turn and do nothing
+            continue;
+        }
+
+        // Check if the zombie is in range to attack the alien
+        int distanceX = abs(currentX - newX);
+        int distanceY = abs(currentY - newY);
+
+        if (!alien_attacked && distanceX <= Z_attack_range && distanceY <= Z_attack_range)
+        {
+            if (distanceX == 0 || distanceY == 0 || distanceX == distanceY)
+            {
+                int zombieDistanceX = abs(currentX - x);
+                int zombieDistanceY = abs(currentY - y);
+
+                if (zombieDistanceX <= Z_attack_range && zombieDistanceY <= Z_attack_range)
+                {
+                    A_health -= Z_attack_damage;
+                    cout << "Zombie attacks Alien" << endl;
+                    cout << "Alien receives a damage of " << Z_attack_damage << endl;
+
+                    if (A_health != 0)
+                    {
+                        cout << "Alien is still alive" << endl;
+                    }
+
+                    alien_attacked = true;
+                }
+                else
+                {
+                    cout << "Alien is too far" << endl;
+                }
+            }
+        }
+    }
+}
