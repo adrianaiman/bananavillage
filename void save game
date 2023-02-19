@@ -1,0 +1,76 @@
+void saveGame(const vector<vector<char>> &grid, const int currentX, const int currentY, const int A_health, const int A_attack_damage, const int A_attack_range, const int zombies, const int Z_health, const int Z_attack_damage, const int Z_attack_range, const string &player, const string &saveFileName)
+{
+    string fileName;
+    cout << "Type in filename:" << endl;
+    cin >> fileName;
+
+    ofstream file(fileName + ".txt");
+
+    file << "------------------------------" << endl;
+    file << "|       Alien vs Zombie      |" << endl;
+    file << "------------------------------" << endl;
+    file << endl;
+
+    int numX = grid.size();
+    int numY = grid[0].size();
+
+    for (int i = 0; i < numX; i++)
+    {
+        // display upper border of the Row
+        file << " ";
+        file << " ";
+        for (int j = 0; j < numY; j++)
+        {
+            file << "+-";
+        }
+        file << "+" << endl;
+        // display row number
+        file << setw(2) << i + 1;
+
+        for (int j = 0; j < numY; j++)
+        {
+            file << "|" << grid[i][j];
+        }
+        file << "|" << endl;
+    }
+
+    file << " ";
+    file << " ";
+    for (int j = 0; j < numY; j++)
+    {
+        file << "+-";
+    }
+    file << "+" << endl;
+
+    file << " ";
+    file << " ";
+    for (int j = 0; j < numY; ++j)
+    {
+        int digit = (j + 1) / 10;
+        file << " ";
+        if (digit == 0)
+            file << " ";
+        else
+            file << digit;
+    }
+    file << endl;
+    file << " ";
+    file << " ";
+    for (int j = 0; j < numY; ++j)
+    {
+        file << " " << (j + 1) % 10;
+    }
+    file << endl
+         << endl;
+
+    file << "Alien Status  >>> Health: " << A_health << " | Attack Damage: " << A_attack_damage << " | Attack Range: " << A_attack_range << endl;
+
+    for (int i = 0; i < zombies; i++)
+    {
+        file << "Zombie Status " << i + 1 << ">>> Health: " << Z_health << " | Attack Damage: " << Z_attack_damage << " | Attack Range: " << Z_attack_range << endl;
+    }
+
+    file.close();
+    cout << "Game Saved" << endl;
+    system("cls");
+}
