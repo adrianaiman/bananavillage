@@ -85,21 +85,19 @@ Problems faced :
 
 4. Couldnt load the file from the saved folder
 
-5. When the alien met with the healthpack, it overrides the healthpack on the grid, thus the alien was substituted by the healthpack character on the grid
+5. Rock had issues where it could not generate random object when alien met with rock
 
-6. Rock had issues where it could not generate random object when alien met with rock
+6. Zombies cannot move in grid
 
-7. Zombies cannot move in grid
+7. Zombies move continuously instead of after alien's turn 
 
-8. Zombies move continuously instead of after alien's turn 
+8. Display of zombie attacking alien keeps on printing even before alien moves
 
-9. Display of zombie attacking alien keeps on printing even before alien moves
+9. alien cannot detect what number of zombies they are attacking but both healths are affected
 
-10. alien cannot detect what number of zombies they are attacking but both healths are affected
+10. When reset the dot in the trail it change to the same type of objects.
 
-11. When reset the dot in the trail it change to the same type of objects.
 
-12. 
 
 Solution : 
 
@@ -107,20 +105,18 @@ Solution :
 
 2. Break out of the loop by adding break statements at the end of each loop.
 
-3. 
+3. add ofstream file(fileName + ".txt") inside the save function, and add the grid manually 
 
-4. 
+4. -
 
-5. 
+5. make a random function to randomly pick between p and h 
 
-6. Kena tengok code
+6. Declare vectors for the zombies' coordinates when they are generated into the grid 
 
-7. Declare vectors for the zombies' coordinates when they are generated into the grid 
+7. Rearrange the void functions so that zombies can move after alien
 
-8. Rearrange the void functions so that zombies can move after alien
+8. -
 
-9. -
+9. - 
 
-10. - 
-
-11. add srand(time(NULL)) in the code
+10. add srand(time(NULL)) in the code
