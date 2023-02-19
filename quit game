@@ -1,0 +1,19 @@
+else if (moveDirection == "quit")
+    {
+        cout << "Are you sure?" << endl;
+        cout << "(yes/no)" << endl;
+        string ans;
+        cin >> ans;
+        if (ans == "yes")
+        {
+            cout << "Thanks for playing!" << endl;
+            getch();
+            exit(0);
+        }
+        else if (ans == "no")
+        {
+            return;
+        }
+        else
+            cout << "Invalid! Please state (yes/no) only" << endl;
+    }
