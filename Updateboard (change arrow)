@@ -1,0 +1,15 @@
+void updateBoard(vector<vector<char>> &grid, int &currentX, int &currentY)
+{
+    int row, column;
+    char direction;
+    cout << "Enter the row and column of the symbol you want to change: ";
+    cout << "Row=> " << endl;
+    cin >> row;
+    cout << "column=>  " << endl;
+    cin >> column;
+    row--;
+    column--;
+    cout << "Enter the direction you want to change the symbol to (e.g. '<', '^', '>', 'v'): ";
+    cin >> direction;
+    grid[row][column] = direction;
+}
