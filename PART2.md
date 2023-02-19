@@ -123,5 +123,4 @@ Solution :
 
 10. - 
 
-11. 
-12. 
+11. add srand(time(NULL)) in the code
